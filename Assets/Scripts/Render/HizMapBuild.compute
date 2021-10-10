@@ -1,0 +1,26 @@
+#pragma kernel Blit
+#pragma kernel HizMapBuild
+
+Texture2D<float> inTex;
+RWTexture2D<float> outTex;
+
+float2 srcTexelSize;
+float2 destTexelSize;
+
+[numthreads(8,8,1)]
+void Blit (uint3 id : SV_DISPATCHTHREADID)
+{
+    uint2 srcXY = floor(id.xy * srcTexelSize /destTexelSize);
+    outTex[id.xy] = inTex[srcXY]; 
+}
+
+#define BatchSize 4
+
+Texture2D<float> inTexs[BatchSize];
+RWTexture2D<float> outTexs[BatchSize];
+
+[numthreads(16,16,1)]
+void HizMapBuild(uint3 id : SV_DISPATCHTHREADID)
+{
+
+}
