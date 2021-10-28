@@ -1,0 +1,15 @@
+#pragma kernel HizBuildCS
+
+#define MAX_MIP_BATCH_SIZE 4
+#define GROUP_TILE_SIZE 8
+
+#pragma multi_compile MIP_LEVEL_COUNT_1 MIP_LEVEL_COUNT_2 MIP_LEVEL_COUNT_3 MIP_LEVEL_COUNT_4
+
+[numthreads(GROUP_TILE_SIZE, GROUP_TILE_SIZE, 1)]
+void HizBuildCS (
+    uint2 GroupId : SV_GROUPID,
+    uint GroupThreadIndex : SV_GROUPINDEX,
+    uint3 ThreadId : SV_DispatchThreadID)
+{
+
+}
